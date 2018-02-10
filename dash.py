@@ -9,6 +9,7 @@ class BuildStatus(Enum):
     passed = 1
     failed = 2
 
+
 class Dash:
     WIDTH = 640
     HEIGHT = 384

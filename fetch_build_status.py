@@ -1,6 +1,7 @@
 import urllib2
 import dash
 
+
 def fetch_build_status(url):
     svg = urllib2.urlopen(url).read()
 
