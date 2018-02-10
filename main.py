@@ -9,13 +9,16 @@ def fetch_bitrise_build_status(app, token):
     return fetch_build_status(
         'https://www.bitrise.io/app/' + app + '.svg?token=' + token)
 
+
 def fetch_travis_build_status(repo):
     return fetch_build_status(
-        'https://travis-ci.org/hanneskaeufler/'+ repo + '.svg?branch=master')
+        'https://travis-ci.org/hanneskaeufler/' + repo + '.svg?branch=master')
+
 
 def fetch_circle_build_status(repo):
     return fetch_build_status(
         'https://circleci.com/gh/hanneskaeufler/' + repo '.svg?style=svg')
+
 
 def main():
     epd = epd7in5.EPD()
