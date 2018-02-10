@@ -16,10 +16,10 @@ class Dash:
     WHITE = 255
 
     PADDING = 10
-    BADGE_WIDTH = 150
+    BADGE_WIDTH = 70
 
-    PASSED = 'passed'
-    FAILED = 'failed'
+    PASSED = u'\uf058'
+    FAILED = u'\uf057'
 
     def __init__(self, projects, fonts_dir):
         self.projects = projects
@@ -27,7 +27,8 @@ class Dash:
         self.draw = ImageDraw.Draw(self.image)
         self.title_font = ImageFont.truetype(os.path.join(fonts_dir, 'FreeMonoBold.ttf'), 32)
         self.font = ImageFont.truetype(os.path.join(fonts_dir, 'Lato-Regular.ttf'), 32)
-        self.badge_font = ImageFont.truetype(os.path.join(fonts_dir ,'Lato-Regular.ttf'), 24)
+        self.badge_font = ImageFont.truetype(os.path.join(fonts_dir, 'Lato-Regular.ttf'), 24)
+        self.icon_font = ImageFont.truetype(os.path.join(fonts_dir, 'fa-regular-400.ttf'), 24)
 
     def render(self, date):
         self.__render_header(date)
@@ -61,17 +62,17 @@ class Dash:
             self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
             self.draw.text(self.__badge_text_position(index, self.PASSED),
                            self.PASSED,
-                           font = self.badge_font,
+                           font = self.icon_font,
                            fill = self.BLACK)
         else:
             self.draw.rectangle(self.__badge_position(index), fill = self.BLACK)
             self.draw.text(self.__badge_text_position(index, self.FAILED),
                            self.FAILED,
-                           font = self.badge_font,
+                           font = self.icon_font,
                            fill = self.WHITE)
 
     def __badge_text_position(self, index, text):
-        width, height = self.draw.textsize(text, font = self.badge_font)
+        width, height = self.draw.textsize(text, font = self.icon_font)
         start_y = index * self.__row_height()
         padding_x = (self.BADGE_WIDTH - width) / 2
         padding_y = (self.__row_height() - height) / 2
