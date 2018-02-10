@@ -12,11 +12,14 @@ class Dash:
 
     PROJECTS = ('PitBuddy iOS', 'PitBuddy Android', 'Blog', 'danger-todoist', 'danger-plugin-mentor')
 
+    PASSED = 'passed'
+
     def __init__(self):
         self.image = self.__clear_image()
         self.draw = ImageDraw.Draw(self.image)
         self.title_font = ImageFont.truetype('FreeMonoBold.ttf', 32)
         self.font = ImageFont.truetype('Lato-Regular.ttf', 32)
+        self.badge_font = ImageFont.truetype('Lato-Regular.ttf', 24)
 
     def render(self):
         self.__render_header()
@@ -38,6 +41,15 @@ class Dash:
 
     def __render_row(self, row):
         self.__render_project_name(row)
+        self.__render_project_status(row)
+
+    def __render_project_status(self, row):
+        start_y = (row[0] + 1) * self.__row_height()
+        badge_width = 150
+        padding = 10
+        pos = (self.__from_right(badge_width), start_y + padding, self.__from_right(padding), start_y + self.__row_height() - padding)
+        self.draw.rectangle(pos, outline = self.BLACK)
+        self.draw.text((self.__from_right(badge_width + 35), start_y + 17), self.PASSED, font = self.badge_font, fill = self.BLACK)
 
     def __render_project_name(self, row):
         index = row[0]
