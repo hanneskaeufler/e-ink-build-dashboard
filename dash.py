@@ -25,10 +25,10 @@ class Dash:
         self.projects = projects
         self.image = self.__clear_image()
         self.draw = ImageDraw.Draw(self.image)
-        self.title_font = ImageFont.truetype(os.path.join(fonts_dir, 'FreeMonoBold.ttf'), 32)
-        self.font = ImageFont.truetype(os.path.join(fonts_dir, 'Lato-Regular.ttf'), 32)
-        self.badge_font = ImageFont.truetype(os.path.join(fonts_dir, 'Lato-Regular.ttf'), 24)
-        self.icon_font = ImageFont.truetype(os.path.join(fonts_dir, 'fa-regular-400.ttf'), 24)
+        self.title_font = ImageFont.truetype(os.path.join(fonts_dir, 'lato', 'Lato-Black.ttf'), 32)
+        self.font = ImageFont.truetype(os.path.join(fonts_dir, 'lato', 'Lato-Regular.ttf'), 32)
+        self.badge_font = ImageFont.truetype(os.path.join(fonts_dir, 'lato', 'Lato-Regular.ttf'), 24)
+        self.icon_font = ImageFont.truetype(os.path.join(fonts_dir, 'fontawesome', 'fa-regular-400.ttf'), 24)
 
     def render(self, date):
         self.__render_header(date)
