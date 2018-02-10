@@ -37,10 +37,13 @@ class Dash:
             self.__render_row((index, project))
 
     def __render_row(self, row):
-        padding = 10
-        guessed_font_vertical_padding = 13
+        self.__render_project_name(row)
+
+    def __render_project_name(self, row):
         index = row[0]
         project = row[1]
+        padding = 10
+        guessed_font_vertical_padding = 13
         y_offset = (index + 1) * self.__row_height() + guessed_font_vertical_padding
         self.draw.text((self.__from_left(padding), y_offset),
                        project,
