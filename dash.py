@@ -33,15 +33,19 @@ class Dash:
                        fill = self.WHITE)
 
     def __render_rows(self):
+        for index, project in enumerate(self.PROJECTS):
+            self.__render_row((index, project))
+
+    def __render_row(self, row):
         padding = 10
         guessed_font_vertical_padding = 13
-
-        for index, project in enumerate(self.PROJECTS):
-            y_offset = (index + 1) * self.__row_height() + guessed_font_vertical_padding
-            self.draw.text((self.__from_left(padding), y_offset),
-                           project,
-                           font = self.font,
-                           fill = self.BLACK)
+        index = row[0]
+        project = row[1]
+        y_offset = (index + 1) * self.__row_height() + guessed_font_vertical_padding
+        self.draw.text((self.__from_left(padding), y_offset),
+                       project,
+                       font = self.font,
+                       fill = self.BLACK)
 
     def __title(self):
         return datetime.date.today().strftime('%B %d, %Y')
