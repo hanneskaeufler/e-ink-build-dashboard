@@ -44,12 +44,28 @@ class Dash:
         self.__render_project_status(row)
 
     def __render_project_status(self, row):
-        start_y = (row[0] + 1) * self.__row_height()
+        index = row[0] + 1
+        self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
+        self.draw.text(self.__badge_text_position(index),
+                       self.PASSED,
+                       font = self.badge_font,
+                       fill = self.BLACK)
+
+    def __badge_text_position(self, index):
+        badge_width = 150
+        start_y = index * self.__row_height()
+
+        return (self.__from_right(badge_width - 35), start_y + 17)
+
+    def __badge_position(self, index):
         badge_width = 150
         padding = 10
-        pos = (self.__from_right(badge_width), start_y + padding, self.__from_right(padding), start_y + self.__row_height() - padding)
-        self.draw.rectangle(pos, outline = self.BLACK)
-        self.draw.text((self.__from_right(badge_width - 35), start_y + 17), self.PASSED, font = self.badge_font, fill = self.BLACK)
+        start_y = index * self.__row_height()
+
+        return (self.__from_right(badge_width),
+                start_y + padding,
+                self.__from_right(padding),
+                start_y + self.__row_height() - padding)
 
     def __render_project_name(self, row):
         index = row[0]
