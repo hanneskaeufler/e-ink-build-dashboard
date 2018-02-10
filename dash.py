@@ -11,6 +11,7 @@ class Dash:
     WHITE = 255
 
     PADDING = 10
+    BADGE_WIDTH = 150
 
     PROJECTS = [
         ('PitBuddy iOS', True),
@@ -70,19 +71,17 @@ class Dash:
 
     def __badge_text_position(self, index, text):
         width, height = self.draw.textsize(text, font = self.badge_font)
-        badge_width = 150
         start_y = index * self.__row_height()
-        padding_x = (badge_width - width) / 2
+        padding_x = (self.BADGE_WIDTH - width) / 2
         padding_y = (self.__row_height() - height) / 2
 
-        return (self.__from_right(badge_width - padding_x + self.PADDING / 2),
+        return (self.__from_right(self.BADGE_WIDTH - padding_x + self.PADDING / 2),
                 start_y + padding_y)
 
     def __badge_position(self, index):
-        badge_width = 150
         start_y = index * self.__row_height()
 
-        return (self.__from_right(badge_width),
+        return (self.__from_right(self.BADGE_WIDTH),
                 start_y + self.PADDING,
                 self.__from_right(self.PADDING),
                 start_y + self.__row_height() - self.PADDING)
