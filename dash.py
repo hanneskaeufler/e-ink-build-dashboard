@@ -37,14 +37,14 @@ class Dash:
         return self.image
 
     def __render_header(self, date):
-        self.draw.rectangle(self.__header_rect_pos(), fill = self.BLACK)
+        self.draw.rectangle(self.__header_rect_pos(), fill=self.BLACK)
         title = self.__title(date)
-        width, height = self.draw.textsize(title, font = self.title_font)
+        width, height = self.draw.textsize(title, font=self.title_font)
         self.draw.text((self.__from_left(self.WIDTH / 2 - width / 2),
                         self.__from_top(self.__row_height() / 2 - height / 2)),
                        self.__title(date),
-                       font = self.title_font,
-                       fill = self.WHITE)
+                       font=self.title_font,
+                       fill=self.WHITE)
 
     def __render_rows(self):
         for index, project in enumerate(self.projects):
@@ -59,20 +59,20 @@ class Dash:
         status = row[2]
 
         if status == BuildStatus.passed:
-            self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
+            self.draw.rectangle(self.__badge_position(index), outline=self.BLACK)
             self.draw.text(self.__badge_text_position(index, self.PASSED),
                            self.PASSED,
-                           font = self.icon_font,
-                           fill = self.BLACK)
+                           font=self.icon_font,
+                           fill=self.BLACK)
         else:
-            self.draw.rectangle(self.__badge_position(index), fill = self.BLACK)
+            self.draw.rectangle(self.__badge_position(index), fill=self.BLACK)
             self.draw.text(self.__badge_text_position(index, self.FAILED),
                            self.FAILED,
-                           font = self.icon_font,
-                           fill = self.WHITE)
+                           font=self.icon_font,
+                           fill=self.WHITE)
 
     def __badge_text_position(self, index, text):
-        width, height = self.draw.textsize(text, font = self.icon_font)
+        width, height = self.draw.textsize(text, font=self.icon_font)
         start_y = index * self.__row_height()
         padding_x = (self.BADGE_WIDTH - width) / 2
         padding_y = (self.__row_height() - height) / 2
@@ -95,8 +95,8 @@ class Dash:
         y_offset = index * self.__row_height() + guessed_font_vertical_padding
         self.draw.text((self.__from_left(self.PADDING), y_offset),
                        project,
-                       font = self.font,
-                       fill = self.BLACK)
+                       font=self.font,
+                       fill=self.BLACK)
 
     def __title(self, date):
         return date.strftime('%c')
