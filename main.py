@@ -47,7 +47,7 @@ def main():
         ('danger-plugin-mentor', fetch_build_status('https://travis-ci.org/hanneskaeufler/danger-plugin-mentor.svg?branch=master'))
     ]
 
-    image = dash.Dash(projects, '/usr/share/fonts/truetype/lato/Lato-Regular.ttf').render(datetime.date.today())
+    image = dash.Dash(projects, '/usr/share/fonts/truetype/lato/Lato-Regular.ttf').render(datetime.datetime.now())
 
     epd.display_frame(epd.get_frame_buffer(image))
 
