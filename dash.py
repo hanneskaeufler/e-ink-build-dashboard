@@ -10,6 +10,8 @@ class Dash:
     BLACK = 0
     WHITE = 255
 
+    PADDING = 10
+
     PROJECTS = [
         ('PitBuddy iOS', True),
         ('PitBuddy Android', True),
@@ -64,21 +66,19 @@ class Dash:
 
     def __badge_position(self, index):
         badge_width = 150
-        padding = 10
         start_y = index * self.__row_height()
 
         return (self.__from_right(badge_width),
-                start_y + padding,
-                self.__from_right(padding),
-                start_y + self.__row_height() - padding)
+                start_y + self.PADDING,
+                self.__from_right(self.PADDING),
+                start_y + self.__row_height() - self.PADDING)
 
     def __render_project_name(self, row):
         index = row[0] + 1
         project = row[1]
-        padding = 10
         guessed_font_vertical_padding = 13
         y_offset = index * self.__row_height() + guessed_font_vertical_padding
-        self.draw.text((self.__from_left(padding), y_offset),
+        self.draw.text((self.__from_left(self.PADDING), y_offset),
                        project,
                        font = self.font,
                        fill = self.BLACK)
