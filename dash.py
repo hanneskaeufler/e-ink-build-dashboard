@@ -2,7 +2,6 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 from enum import Enum
-import datetime
 import os
 
 class BuildStatus(Enum):
@@ -30,17 +29,19 @@ class Dash:
         self.font = ImageFont.truetype(os.path.join(fonts_dir, 'Lato-Regular.ttf'), 32)
         self.badge_font = ImageFont.truetype(os.path.join(fonts_dir ,'Lato-Regular.ttf'), 24)
 
-    def render(self):
-        self.__render_header()
+    def render(self, date):
+        self.__render_header(date)
         self.__render_rows()
 
         return self.image
 
-    def __render_header(self):
+    def __render_header(self, date):
         self.draw.rectangle(self.__header_rect_pos(), fill = self.BLACK)
-        # TODO: Automatical vertical and horizontal centering?
-        self.draw.text((self.__from_left(160), self.__from_top(17)),
-                       self.__title(),
+        title = self.__title(date)
+        width, height = self.draw.textsize(title, font = self.title_font)
+        self.draw.text((self.__from_left(self.WIDTH / 2 - width / 2),
+                        self.__from_top(self.__row_height() / 2 - height / 2)),
+                       self.__title(date),
                        font = self.title_font,
                        fill = self.WHITE)
 
@@ -96,8 +97,8 @@ class Dash:
                        font = self.font,
                        fill = self.BLACK)
 
-    def __title(self):
-        return datetime.date.today().strftime('%B %d, %Y')
+    def __title(self, date):
+        return date.strftime('%c')
 
     def __header_rect_pos(self):
         return (self.__left(),
