@@ -137,4 +137,3 @@ class Dash:
 
     def __clear_image(self):
         return Image.new('1', (self.WIDTH, self.HEIGHT), 1)
-
