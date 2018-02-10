@@ -83,9 +83,9 @@ class Dash:
         start_y = index * self.__row_height()
         padding_x = (self.BADGE_WIDTH - width) / 2
         padding_y = (self.__row_height() - height) / 2
+        offset_x = self.BADGE_WIDTH - padding_x + self.PADDING / 2
 
-        return (self.__from_right(self.BADGE_WIDTH - padding_x + self.PADDING / 2),
-                start_y + padding_y)
+        return (self.__from_right(offset_x), start_y + padding_y)
 
     def __badge_position(self, index):
         start_y = index * self.__row_height()
