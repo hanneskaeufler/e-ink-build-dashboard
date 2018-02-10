@@ -1,6 +1,7 @@
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+import datetime
 
 class Dash:
     WIDTH = 640
@@ -12,7 +13,7 @@ class Dash:
     def __init__(self):
         self.image = self.__clear_image()
         self.draw = ImageDraw.Draw(self.image)
-        self.title_font = ImageFont.truetype('/Users/hanneskaeufler/Library/Fonts/Lato-Black.ttf', 32)
+        self.title_font = ImageFont.truetype('FreeMonoBold.ttf', 32)
 
     def render(self):
         self.__render_header()
@@ -22,7 +23,7 @@ class Dash:
     def __render_header(self):
         self.draw.rectangle((0, 0, 10, 10), fill = self.BLACK)
         self.draw.rectangle(self.__header_rect_pos(), fill = self.BLACK)
-        self.draw.text((self.__from_left(160), self.__from_top(17)), 'CURRENT DATE', font = self.title_font, fill = self.WHITE)
+        self.draw.text((self.__from_left(160), self.__from_top(17)), datetime.date.today().strftime('%B %d, %Y'), font = self.title_font, fill = self.WHITE)
 
     def __header_rect_pos(self):
         return (self.__left(),
