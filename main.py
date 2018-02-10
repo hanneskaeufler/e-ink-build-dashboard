@@ -35,6 +35,7 @@ import dash
 from fetch_build_status import fetch_build_status
 import os
 
+
 def main():
     epd = epd7in5.EPD()
     epd.init()

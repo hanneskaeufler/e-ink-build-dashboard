@@ -4,6 +4,7 @@ from PIL import ImageFont
 from enum import Enum
 import os
 
+
 class BuildStatus(Enum):
     passed = 1
     failed = 2

@@ -2,6 +2,7 @@ import dash
 import datetime
 import os
 
+
 def main():
     projects = [
         ('PitBuddy iOS', dash.BuildStatus.passed),

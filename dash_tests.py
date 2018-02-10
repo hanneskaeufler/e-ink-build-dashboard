@@ -4,6 +4,7 @@ import datetime
 import os
 import unittest
 
+
 class DashTests(unittest.TestCase):
     def test_render_returns_image(self):
         projects = [
