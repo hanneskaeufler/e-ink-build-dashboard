@@ -44,9 +44,7 @@ def main():
         ('danger-todoist', dash.BuildStatus.passed),
         ('danger-plugin-mentor', dash.BuildStatus.passed)]
 
-    image = dash
-        .Dash(projects, '/usr/share/fonts/truetype/lato/Lato-Regular.ttf')
-        .render()
+    image = dash.Dash(projects, '/usr/share/fonts/truetype/lato/Lato-Regular.ttf').render()
 
     epd.display_frame(epd.get_frame_buffer(image))
 
