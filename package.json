@@ -1,0 +1,14 @@
+{
+  "name": "e-ink-dash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "python dash_tests.py && python integration_tests.py && node integration_tests.js && open diff.png"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "pixelmatch": "^4.0.2"
+  }
+}
