@@ -32,7 +32,7 @@ import datetime
 #import imagedata
 import codecs
 import dash
-import fetch_build_status
+from fetch_build_status import fetch_build_status
 import os
 
 def main():
