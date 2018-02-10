@@ -20,6 +20,7 @@ class Dash:
         ('danger-plugin-mentor', True)]
 
     PASSED = 'passed'
+    FAILED = 'failed'
 
     def __init__(self):
         self.image = self.__clear_image()
@@ -52,11 +53,20 @@ class Dash:
 
     def __render_project_status(self, row):
         index = row[0] + 1
-        self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
-        self.draw.text(self.__badge_text_position(index),
-                       self.PASSED,
-                       font = self.badge_font,
-                       fill = self.BLACK)
+        status = row[2]
+
+        if status:
+            self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
+            self.draw.text(self.__badge_text_position(index),
+                           self.PASSED,
+                           font = self.badge_font,
+                           fill = self.BLACK)
+        else:
+            self.draw.rectangle(self.__badge_position(index), fill = self.BLACK)
+            self.draw.text(self.__badge_text_position(index),
+                           self.FAILED,
+                           font = self.badge_font,
+                           fill = self.WHITE)
 
     def __badge_text_position(self, index):
         badge_width = 150
