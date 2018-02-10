@@ -49,7 +49,7 @@ class Dash:
         padding = 10
         pos = (self.__from_right(badge_width), start_y + padding, self.__from_right(padding), start_y + self.__row_height() - padding)
         self.draw.rectangle(pos, outline = self.BLACK)
-        self.draw.text((self.__from_right(badge_width + 35), start_y + 17), self.PASSED, font = self.badge_font, fill = self.BLACK)
+        self.draw.text((self.__from_right(badge_width - 35), start_y + 17), self.PASSED, font = self.badge_font, fill = self.BLACK)
 
     def __render_project_name(self, row):
         index = row[0]
