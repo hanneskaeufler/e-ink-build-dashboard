@@ -1,7 +1,12 @@
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+from enum import Enum
 import datetime
+
+class BuildStatus(Enum):
+    passed = 1
+    failed = 2
 
 class Dash:
     WIDTH = 640
@@ -14,11 +19,11 @@ class Dash:
     BADGE_WIDTH = 150
 
     PROJECTS = [
-        ('PitBuddy iOS', True),
-        ('PitBuddy Android', True),
-        ('Blog', False),
-        ('danger-todoist', True),
-        ('danger-plugin-mentor', True)]
+        ('PitBuddy iOS', BuildStatus.passed),
+        ('PitBuddy Android', BuildStatus.passed),
+        ('Blog', BuildStatus.failed),
+        ('danger-todoist', BuildStatus.passed),
+        ('danger-plugin-mentor', BuildStatus.passed)]
 
     PASSED = 'passed'
     FAILED = 'failed'
@@ -56,7 +61,7 @@ class Dash:
         index = row[0] + 1
         status = row[2]
 
-        if status:
+        if status == BuildStatus.passed:
             self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
             self.draw.text(self.__badge_text_position(index, self.PASSED),
                            self.PASSED,
