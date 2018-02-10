@@ -57,22 +57,26 @@ class Dash:
 
         if status:
             self.draw.rectangle(self.__badge_position(index), outline = self.BLACK)
-            self.draw.text(self.__badge_text_position(index),
+            self.draw.text(self.__badge_text_position(index, self.PASSED),
                            self.PASSED,
                            font = self.badge_font,
                            fill = self.BLACK)
         else:
             self.draw.rectangle(self.__badge_position(index), fill = self.BLACK)
-            self.draw.text(self.__badge_text_position(index),
+            self.draw.text(self.__badge_text_position(index, self.FAILED),
                            self.FAILED,
                            font = self.badge_font,
                            fill = self.WHITE)
 
-    def __badge_text_position(self, index):
+    def __badge_text_position(self, index, text):
+        width, height = self.draw.textsize(text, font = self.badge_font)
         badge_width = 150
         start_y = index * self.__row_height()
+        padding_x = (badge_width - width) / 2
+        padding_y = (self.__row_height() - height) / 2
 
-        return (self.__from_right(badge_width - 35), start_y + 17)
+        return (self.__from_right(badge_width - padding_x + self.PADDING / 2),
+                start_y + padding_y)
 
     def __badge_position(self, index):
         badge_width = 150
