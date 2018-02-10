@@ -42,7 +42,7 @@ class Dash:
 
     def __render_rows(self):
         for index, project in enumerate(self.PROJECTS):
-            self.__render_row((index, project[0]))
+            self.__render_row((index, project[0], project[1]))
 
     def __render_row(self, row):
         self.__render_project_name(row)
