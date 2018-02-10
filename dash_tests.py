@@ -10,7 +10,11 @@ class DashTests(unittest.TestCase):
         projects = [
             ('MyProject', dash.BuildStatus.failed)
         ]
-        self.assertIsInstance(dash.Dash(projects, os.getcwd()).render(datetime.date.today()), Image.Image)
+
+        image = dash.Dash(projects, os.getcwd()).render(datetime.date.today())
+
+        self.assertIsInstance(image, Image.Image)
+
 
 if __name__ == '__main__':
     unittest.main()

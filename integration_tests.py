@@ -15,5 +15,6 @@ def main():
 
     dash.Dash(projects, os.getcwd()).render(date).save('actual.png')
 
+
 if __name__ == '__main__':
     main()
