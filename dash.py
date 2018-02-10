@@ -18,17 +18,11 @@ class Dash:
     PADDING = 10
     BADGE_WIDTH = 150
 
-    PROJECTS = [
-        ('PitBuddy iOS', BuildStatus.passed),
-        ('PitBuddy Android', BuildStatus.passed),
-        ('Blog', BuildStatus.failed),
-        ('danger-todoist', BuildStatus.passed),
-        ('danger-plugin-mentor', BuildStatus.passed)]
-
     PASSED = 'passed'
     FAILED = 'failed'
 
-    def __init__(self):
+    def __init__(self, projects):
+        self.projects = projects
         self.image = self.__clear_image()
         self.draw = ImageDraw.Draw(self.image)
         self.title_font = ImageFont.truetype('FreeMonoBold.ttf', 32)
@@ -50,7 +44,7 @@ class Dash:
                        fill = self.WHITE)
 
     def __render_rows(self):
-        for index, project in enumerate(self.PROJECTS):
+        for index, project in enumerate(self.projects):
             self.__render_row((index, project[0], project[1]))
 
     def __render_row(self, row):
@@ -111,7 +105,7 @@ class Dash:
                 self.__from_top(1 * self.__row_height()))
 
     def __row_height(self):
-        return self.HEIGHT / (len(self.PROJECTS) + 1)
+        return self.HEIGHT / (len(self.projects) + 1)
 
     def __right(self):
         return self.__from_right(0)
