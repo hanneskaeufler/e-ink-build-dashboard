@@ -67,16 +67,16 @@ class Dash:
         if status == BuildStatus.passed:
             self.draw.rectangle(self.__badge_position(index),
                                 outline=self.BLACK)
-            self.draw.text(self.__badge_text_position(index, self.PASSED),
-                           self.PASSED,
-                           font=self.icon_font,
-                           fill=self.BLACK)
+            self.__draw_badge_icon(index, self.PASSED, self.BLACK)
         else:
             self.draw.rectangle(self.__badge_position(index), fill=self.BLACK)
-            self.draw.text(self.__badge_text_position(index, self.FAILED),
-                           self.FAILED,
-                           font=self.icon_font,
-                           fill=self.WHITE)
+            self.__draw_badge_icon(index, self.FAILED, self.WHITE)
+
+    def __draw_badge_icon(self, index, text, color):
+        self.draw.text(self.__badge_text_position(index, text),
+                       text,
+                       font=self.icon_font,
+                       fill=color)
 
     def __badge_text_position(self, index, text):
         width, height = self.draw.textsize(text, font=self.icon_font)
