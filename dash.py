@@ -64,7 +64,8 @@ class Dash:
         status = row[2]
 
         if status == BuildStatus.passed:
-            self.draw.rectangle(self.__badge_position(index), outline=self.BLACK)
+            self.draw.rectangle(self.__badge_position(index),
+                                outline=self.BLACK)
             self.draw.text(self.__badge_text_position(index, self.PASSED),
                            self.PASSED,
                            font=self.icon_font,
