@@ -10,7 +10,12 @@ class Dash:
     BLACK = 0
     WHITE = 255
 
-    PROJECTS = ('PitBuddy iOS', 'PitBuddy Android', 'Blog', 'danger-todoist', 'danger-plugin-mentor')
+    PROJECTS = [
+        ('PitBuddy iOS', True),
+        ('PitBuddy Android', True),
+        ('Blog', False),
+        ('danger-todoist', True),
+        ('danger-plugin-mentor', True)]
 
     PASSED = 'passed'
 
@@ -37,7 +42,7 @@ class Dash:
 
     def __render_rows(self):
         for index, project in enumerate(self.PROJECTS):
-            self.__render_row((index, project))
+            self.__render_row((index, project[0]))
 
     def __render_row(self, row):
         self.__render_project_name(row)
