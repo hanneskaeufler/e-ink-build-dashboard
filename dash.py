@@ -53,7 +53,7 @@ class Dash:
                 self.__from_top(1 * self.__row_height()))
 
     def __row_height(self):
-        return self.HEIGHT / 6
+        return self.HEIGHT / (len(self.PROJECTS) + 1)
 
     def __right(self):
         return self.__from_right(0)
