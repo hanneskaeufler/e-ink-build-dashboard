@@ -23,7 +23,14 @@ class Dash:
     def __render_header(self):
         self.draw.rectangle((0, 0, 10, 10), fill = self.BLACK)
         self.draw.rectangle(self.__header_rect_pos(), fill = self.BLACK)
-        self.draw.text((self.__from_left(160), self.__from_top(17)), datetime.date.today().strftime('%B %d, %Y'), font = self.title_font, fill = self.WHITE)
+        # TODO: Automatical vertical and horizontal centering?
+        self.draw.text((self.__from_left(160), self.__from_top(17)),
+                       self.__title(),
+                       font = self.title_font,
+                       fill = self.WHITE)
+
+    def __title(self):
+        return datetime.date.today().strftime('%B %d, %Y')
 
     def __header_rect_pos(self):
         return (self.__left(),
@@ -53,5 +60,5 @@ class Dash:
         return offset
 
     def __clear_image(self):
-        return Image.new('1', (self.WIDTH, self.HEIGHT), 1)    # 1: clear the frame
+        return Image.new('1', (self.WIDTH, self.HEIGHT), 1)
 
