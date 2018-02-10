@@ -1,10 +1,11 @@
 from PIL import Image
 from PIL import ImageDraw
 
-EPD_WIDTH = 640
-EPD_HEIGHT = 384
 
 class Dash:
+    WIDTH = 640
+    HEIGHT = 384
+
     def __init__(self):
         self.image = self.__clear_image()
         self.draw = ImageDraw.Draw(self.image)
@@ -15,5 +16,5 @@ class Dash:
         return self.image
 
     def __clear_image(self):
-        return Image.new('1', (EPD_WIDTH, EPD_HEIGHT), 1)    # 1: clear the frame
+        return Image.new('1', (self.WIDTH, self.HEIGHT), 1)    # 1: clear the frame
 
