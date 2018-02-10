@@ -1,4 +1,5 @@
 import dash
+import os
 
 def main():
     projects = [
@@ -8,7 +9,7 @@ def main():
         ('danger-todoist', dash.BuildStatus.passed),
         ('danger-plugin-mentor', dash.BuildStatus.passed)]
 
-    dash.Dash(projects).render().save('actual.png')
+    dash.Dash(projects, os.getcwd()).render().save('actual.png')
 
 if __name__ == '__main__':
     main()

@@ -3,6 +3,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 from enum import Enum
 import datetime
+import os
 
 class BuildStatus(Enum):
     passed = 1
@@ -21,13 +22,13 @@ class Dash:
     PASSED = 'passed'
     FAILED = 'failed'
 
-    def __init__(self, projects):
+    def __init__(self, projects, fonts_dir):
         self.projects = projects
         self.image = self.__clear_image()
         self.draw = ImageDraw.Draw(self.image)
-        self.title_font = ImageFont.truetype('FreeMonoBold.ttf', 32)
-        self.font = ImageFont.truetype('Lato-Regular.ttf', 32)
-        self.badge_font = ImageFont.truetype('Lato-Regular.ttf', 24)
+        self.title_font = ImageFont.truetype(os.path.join(fonts_dir, 'FreeMonoBold.ttf'), 32)
+        self.font = ImageFont.truetype(os.path.join(fonts_dir, 'Lato-Regular.ttf'), 32)
+        self.badge_font = ImageFont.truetype(os.path.join(fonts_dir ,'Lato-Regular.ttf'), 24)
 
     def render(self):
         self.__render_header()
