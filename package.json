@@ -1,13 +1,13 @@
 {
   "name": "e-ink-dash",
   "version": "1.0.0",
-  "description": "",
+  "description": "Generates the diff of two rendered images",
   "main": "index.js",
   "scripts": {
     "test": "python dash_tests.py && python integration_tests.py && node generate_diff.js && open diff.png"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Hannes Kaeufler",
+  "license": "MIT",
   "devDependencies": {
     "pixelmatch": "^4.0.2"
   }
