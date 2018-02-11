@@ -17,7 +17,7 @@ def fetch_travis_build_status(repo):
 
 def fetch_circle_build_status(repo):
     return fetch_build_status(
-        'https://circleci.com/gh/hanneskaeufler/' + repo '.svg?style=svg')
+        'https://circleci.com/gh/hanneskaeufler/' + repo + '.svg?style=svg')
 
 
 def main():
