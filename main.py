@@ -3,11 +3,13 @@ import datetime
 import dash
 from fetch_build_status import fetch_build_status
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def fetch_bitrise_build_status(app, token):
     return fetch_build_status(
-        'https://www.bitrise.io/app/' + app + '.svg?token=' + token)
+        'https://app.bitrise.io/app/' + app + '.json?token=' + token)
 
 
 def fetch_travis_build_status(repo):
