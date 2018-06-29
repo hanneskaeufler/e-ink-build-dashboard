@@ -1,11 +1,12 @@
-import urllib2
 import dash
+import re
+import urllib2
 
 
 def fetch_build_status(url):
-    svg = urllib2.urlopen(url).read()
+    svg_or_json = urllib2.urlopen(url).read()
 
-    if 'pass' in svg.lower():
+    if re.compile('pass|success').match(svg_or_json.lower()):
         return dash.BuildStatus.passed
 
     return dash.BuildStatus.failed
