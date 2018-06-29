@@ -5,3 +5,4 @@ diff.png
 *.ttf
 .coverage
 /htmlcov/
+.env

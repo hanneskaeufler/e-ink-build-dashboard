@@ -36,7 +36,7 @@ def main():
 
     image = (
         dash
-        .Dash(projects, '/usr/share/fonts/truetype/lato/Lato-Regular.ttf')
+        .Dash(projects, os.getenv('DASH_FONTS_DIR'))
         .render(datetime.datetime.now())
     )
 
