@@ -5,9 +5,9 @@ import os
 
 def main():
     projects = [
-        ('PitBuddy iOS', dash.BuildStatus.passed),
-        ('PitBuddy Android', dash.BuildStatus.passed),
-        ('Blog', dash.BuildStatus.failed),
+        ('pitbuddy-ios', dash.BuildStatus.passed),
+        ('pitbuddy-android', dash.BuildStatus.passed),
+        ('blog', dash.BuildStatus.failed),
         ('danger-todoist', dash.BuildStatus.passed),
         ('danger-plugin-mentor', dash.BuildStatus.passed)]
 

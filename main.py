@@ -27,9 +27,9 @@ def main():
     epd.init()
 
     projects = [
-        ('PitBuddy iOS', fetch_bitrise_build_status(os.getenv('PB_IOS_APP'), os.getenv('PB_IOS_TOKEN'))),  # noqa
-        ('PitBuddy Android', fetch_bitrise_build_status(os.getenv('PB_ANDROID_APP'), os.getenv('PB_ANDROID_TOKEN'))),  # noqa
-        ('Blog', fetch_circle_build_status('blog')),
+        ('pitbuddy-ios', fetch_bitrise_build_status(os.getenv('PB_IOS_APP'), os.getenv('PB_IOS_TOKEN'))),  # noqa
+        ('pitbuddy-android', fetch_bitrise_build_status(os.getenv('PB_ANDROID_APP'), os.getenv('PB_ANDROID_TOKEN'))),  # noqa
+        ('blog', fetch_circle_build_status('blog')),
         ('danger-todoist', fetch_travis_build_status('danger-todoist')),
         ('danger-plugin-mentor', fetch_travis_build_status('danger-plugin-mentor'))  # noqa
     ]
