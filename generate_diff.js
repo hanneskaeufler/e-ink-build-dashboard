@@ -1,6 +1,10 @@
+// Yes I know this is super hacky, but fine for now.
+module.paths.push("/usr/lib/node_modules");
+module.paths.push("/usr/lib/node_modules/pixelmatch/node_modules");
+
 var fs = require('fs'),
-    PNG = require('pngjs').PNG,
-    pixelmatch = require('pixelmatch');
+    pixelmatch = require('pixelmatch'),
+    PNG = require('pngjs').PNG;
 
 var img1 = fs.createReadStream('expected.png').pipe(new PNG()).on('parsed', doneReading),
     img2 = fs.createReadStream('actual.png').pipe(new PNG()).on('parsed', doneReading),
