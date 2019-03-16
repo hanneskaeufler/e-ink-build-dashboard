@@ -5,11 +5,13 @@ import os
 
 def main():
     projects = [
-        ('pitbuddy-ios', dash.BuildStatus.passed),
-        ('pitbuddy-android', dash.BuildStatus.passed),
         ('blog', dash.BuildStatus.failed),
+        ('crytic', dash.BuildStatus.passed),
+        ('danger-plugin-mentor', dash.BuildStatus.passed),
         ('danger-todoist', dash.BuildStatus.passed),
-        ('danger-plugin-mentor', dash.BuildStatus.passed)]
+        ('pitbuddy-android', dash.BuildStatus.passed),
+        ('pitbuddy-ios', dash.BuildStatus.passed),
+    ]
 
     date = datetime.datetime(2018, 2, 10, 1, 1, 1)
 
