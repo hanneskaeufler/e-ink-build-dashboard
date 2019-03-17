@@ -1,12 +1,21 @@
-FROM python:3.7.2-alpine3.9
+FROM arm32v7/python:3.7.2-alpine3.9
 
-# Install dependencies for Pillow, as well as install node and npm
-RUN apk update && apk add build-base zlib-dev jpeg-dev freetype-dev nodejs nodejs-npm
+RUN apk add build-base git sudo bash
 
-# Pillow is needed to generate the image in python
-RUN pip install Pillow pycodestyle
+# Install gpio
+RUN cd /home \
+    && git clone git://git.drogon.net/wiringPi \
+    && cd wiringPi \
+    && ./build \
+    && gpio -v
 
-# Pixelmatch is just a test-time dependency
-RUN npm install --global pixelmatch@4.0.2
+# ADD http://www.airspayce.com/mikem/bcm2835/bcm2835-1.45.tar.gz /home
+# RUN cd /home && tar --extract --file=/home/bcm2835-1.45.tar.gz
+# RUN cd /home/bcm2835-1.45 && ./configure && make && make check; cat ./src/test-suite.log # make install
 
-CMD ["/bin/bash"]
+# Install python bindings for linux spi access
+# RUN pip install spidev
+
+# COPY dash.py fetch_build_status.py main.py epd7in5.py epdif.py /home/app/
+
+CMD ["/bin/sh", "echo 'lol'"]
