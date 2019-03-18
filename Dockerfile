@@ -1,21 +1,23 @@
-FROM arm32v7/python:3.7.2-alpine3.9
+FROM arm32v7/python:2.7.16-alpine3.9
 
-RUN apk add build-base git sudo bash
+RUN apk add build-base linux-headers git zlib-dev jpeg-dev freetype-dev
 
-# Install gpio
-RUN cd /home \
-    && git clone git://git.drogon.net/wiringPi \
-    && cd wiringPi \
-    && ./build \
-    && gpio -v
+RUN mkdir /home/build
+
+RUN cd /home/build \
+    && git clone https://github.com/lthiery/SPI-Py.git \
+    && cd SPI-Py && python setup.py install
 
 # ADD http://www.airspayce.com/mikem/bcm2835/bcm2835-1.45.tar.gz /home
 # RUN cd /home && tar --extract --file=/home/bcm2835-1.45.tar.gz
 # RUN cd /home/bcm2835-1.45 && ./configure && make && make check; cat ./src/test-suite.log # make install
 
-# Install python bindings for linux spi access
-# RUN pip install spidev
+RUN pip install rpi.gpio spidev Pillow python-dotenv enum34
 
-# COPY dash.py fetch_build_status.py main.py epd7in5.py epdif.py /home/app/
+COPY dash.py fetch_build_status.py epdif.py epd7in5.py main.py /home/app/
+COPY fontawesome /home/app/fontawesome
+COPY lato /home/app/lato
 
-CMD ["/bin/sh", "echo 'lol'"]
+WORKDIR "/home/app"
+
+CMD ["python", "main.py"]
