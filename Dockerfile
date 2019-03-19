@@ -14,6 +14,8 @@ COPY dash.py fetch_build_status.py epdif.py epd7in5.py main.py /home/app/
 COPY fontawesome /home/app/fontawesome
 COPY lato /home/app/lato
 
+ENV DASH_FONTS_DIR=/home/app
+
 WORKDIR "/home/app"
 
 CMD ["python", "main.py"]
