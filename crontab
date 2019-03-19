@@ -1,0 +1,2 @@
+*/5 * * * * python /home/app/main.py
+
