@@ -1,4 +1,4 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/ce497ea25f7be8e27c22/maintainability)](https://codeclimate.com/github/hanneskaeufler/e-ink-build-dashboard/maintainability)
+[![Build Status](https://travis-ci.com/hanneskaeufler/e-ink-build-dashboard.svg?branch=master)](https://travis-ci.com/hanneskaeufler/e-ink-build-dashboard) [![Maintainability](https://api.codeclimate.com/v1/badges/ce497ea25f7be8e27c22/maintainability)](https://codeclimate.com/github/hanneskaeufler/e-ink-build-dashboard/maintainability)
 
 # E-Ink Build Dashboard
 

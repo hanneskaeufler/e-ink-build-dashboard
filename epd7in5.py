@@ -1,75 +1,76 @@
 ##
- #  @filename   :   epd7in5.py
- #  @brief      :   Implements for Dual-color e-paper library
- #  @author     :   Yehui from Waveshare
- #
- #  Copyright (C) Waveshare     July 10 2017
- #
- # Permission is hereby granted, free of charge, to any person obtaining a copy
- # of this software and associated documnetation files (the "Software"), to deal
- # in the Software without restriction, including without limitation the rights
- # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- # copies of the Software, and to permit persons to  whom the Software is
- # furished to do so, subject to the following conditions:
- #
- # The above copyright notice and this permission notice shall be included in
- # all copies or substantial portions of the Software.
- #
- # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- # FITNESS OR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- # LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- # THE SOFTWARE.
- #
+#  @filename   :   epd7in5.py
+#  @brief      :   Implements for Dual-color e-paper library
+#  @author     :   Yehui from Waveshare
+#
+#  Copyright (C) Waveshare     July 10 2017
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documnetation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to  whom the Software is
+# furished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS OR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+#
 
 import epdif
 from PIL import Image
 import RPi.GPIO as GPIO
 
 # Display resolution
-EPD_WIDTH       = 640
-EPD_HEIGHT      = 384
+EPD_WIDTH = 640
+EPD_HEIGHT = 384
 
 # EPD7IN5 commands
-PANEL_SETTING                               = 0x00
-POWER_SETTING                               = 0x01
-POWER_OFF                                   = 0x02
-POWER_OFF_SEQUENCE_SETTING                  = 0x03
-POWER_ON                                    = 0x04
-POWER_ON_MEASURE                            = 0x05
-BOOSTER_SOFT_START                          = 0x06
-DEEP_SLEEP                                  = 0x07
-DATA_START_TRANSMISSION_1                   = 0x10
-DATA_STOP                                   = 0x11
-DISPLAY_REFRESH                             = 0x12
-IMAGE_PROCESS                               = 0x13
-LUT_FOR_VCOM                                = 0x20
-LUT_BLUE                                    = 0x21
-LUT_WHITE                                   = 0x22
-LUT_GRAY_1                                  = 0x23
-LUT_GRAY_2                                  = 0x24
-LUT_RED_0                                   = 0x25
-LUT_RED_1                                   = 0x26
-LUT_RED_2                                   = 0x27
-LUT_RED_3                                   = 0x28
-LUT_XON                                     = 0x29
-PLL_CONTROL                                 = 0x30
-TEMPERATURE_SENSOR_COMMAND                  = 0x40
-TEMPERATURE_CALIBRATION                     = 0x41
-TEMPERATURE_SENSOR_WRITE                    = 0x42
-TEMPERATURE_SENSOR_READ                     = 0x43
-VCOM_AND_DATA_INTERVAL_SETTING              = 0x50
-LOW_POWER_DETECTION                         = 0x51
-TCON_SETTING                                = 0x60
-TCON_RESOLUTION                             = 0x61
-SPI_FLASH_CONTROL                           = 0x65
-REVISION                                    = 0x70
-GET_STATUS                                  = 0x71
-AUTO_MEASUREMENT_VCOM                       = 0x80
-READ_VCOM_VALUE                             = 0x81
-VCM_DC_SETTING                              = 0x82
+PANEL_SETTING = 0x00
+POWER_SETTING = 0x01
+POWER_OFF = 0x02
+POWER_OFF_SEQUENCE_SETTING = 0x03
+POWER_ON = 0x04
+POWER_ON_MEASURE = 0x05
+BOOSTER_SOFT_START = 0x06
+DEEP_SLEEP = 0x07
+DATA_START_TRANSMISSION_1 = 0x10
+DATA_STOP = 0x11
+DISPLAY_REFRESH = 0x12
+IMAGE_PROCESS = 0x13
+LUT_FOR_VCOM = 0x20
+LUT_BLUE = 0x21
+LUT_WHITE = 0x22
+LUT_GRAY_1 = 0x23
+LUT_GRAY_2 = 0x24
+LUT_RED_0 = 0x25
+LUT_RED_1 = 0x26
+LUT_RED_2 = 0x27
+LUT_RED_3 = 0x28
+LUT_XON = 0x29
+PLL_CONTROL = 0x30
+TEMPERATURE_SENSOR_COMMAND = 0x40
+TEMPERATURE_CALIBRATION = 0x41
+TEMPERATURE_SENSOR_WRITE = 0x42
+TEMPERATURE_SENSOR_READ = 0x43
+VCOM_AND_DATA_INTERVAL_SETTING = 0x50
+LOW_POWER_DETECTION = 0x51
+TCON_SETTING = 0x60
+TCON_RESOLUTION = 0x61
+SPI_FLASH_CONTROL = 0x65
+REVISION = 0x70
+GET_STATUS = 0x71
+AUTO_MEASUREMENT_VCOM = 0x80
+READ_VCOM_VALUE = 0x81
+VCM_DC_SETTING = 0x82
+
 
 class EPD:
     def __init__(self):
@@ -134,15 +135,15 @@ class EPD:
         self.send_data(0x22)
 
         self.send_command(TCON_RESOLUTION)
-        self.send_data(0x02)     #source 640
+        self.send_data(0x02)  # source 640
         self.send_data(0x80)
-        self.send_data(0x01)     #gate 384
+        self.send_data(0x01)  # gate 384
         self.send_data(0x80)
 
         self.send_command(VCM_DC_SETTING)
-        self.send_data(0x1E)      #decide by LUT file
+        self.send_data(0x1E)  # decide by LUT file
 
-        self.send_command(0xe5)           #FLASH MODE
+        self.send_command(0xe5)  # FLASH MODE
         self.send_data(0x03)
 
     def wait_until_idle(self):
@@ -153,7 +154,7 @@ class EPD:
         self.digital_write(self.reset_pin, GPIO.LOW)         # module reset
         self.delay_ms(200)
         self.digital_write(self.reset_pin, GPIO.HIGH)
-        self.delay_ms(200)    
+        self.delay_ms(200)
 
     def get_frame_buffer(self, image):
         buf = [0x00] * (self.width * self.height / 8)
@@ -204,4 +205,3 @@ class EPD:
         self.send_data(0xa5)
 
 ### END OF FILE ###
-

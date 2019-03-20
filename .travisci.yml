@@ -1,0 +1,6 @@
+language: minimal
+services:
+  - docker
+script:
+  - make build-dev
+  - make ci

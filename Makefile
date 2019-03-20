@@ -13,12 +13,17 @@ build:
 	docker build . -t $(REPO)/$(image_name):$(TAG)
 
 build-dev:
-	docker build . -t $(image_name)-dev
+	docker build . -f Dockerfile.dev -t $(image_name)-dev
 
-code-style:
+check-code-style:
 	$(docker_run) pycodestyle .
 
-test: code-style
+fix-code-style:
+	$(docker_run) autopep8 --in-place --recursive .
+
+ci: check-code-style test
+
+test:
 	$(docker_run) /bin/sh -c $(test_cmd) && open diff.png
 
-.PHONY: build build-dev test
+.PHONY: build build-dev test ci push check-code-style fix-code-style
