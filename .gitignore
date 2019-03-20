@@ -5,3 +5,4 @@ diff.png
 .coverage
 /htmlcov/
 .env
+coverage.xml

@@ -27,6 +27,6 @@ test:
 	$(docker_run) /bin/sh -c $(test_cmd)
 
 test-coverage:
-	$(docker_run) /bin/sh -c "coverage run --source=. --omit=*_tests.py dash_tests.py && coverage report"
+	$(docker_run) /bin/sh -c "coverage run --source=. --omit=*_tests.py dash_tests.py && coverage report && coverage xml"
 
 .PHONY: build build-dev test ci push check-code-style fix-code-style
