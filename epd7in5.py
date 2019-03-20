@@ -169,7 +169,7 @@ class EPD:
         pixels = image_monocolor.load()
         for y in range(self.height):
             for x in range(self.width):
-                # Set the bits for the column of pixels at the current position.
+                # Set the bits for the column of pixels at the current position
                 if pixels[x, y] != 0:
                     buf[(x + y * self.width) / 8] |= 0x80 >> (x % 8)
         return buf
@@ -203,5 +203,3 @@ class EPD:
         self.wait_until_idle()
         self.send_command(DEEP_SLEEP)
         self.send_data(0xa5)
-
-### END OF FILE ###
