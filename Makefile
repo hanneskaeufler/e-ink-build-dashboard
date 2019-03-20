@@ -24,6 +24,6 @@ fix-code-style:
 ci: check-code-style test
 
 test:
-	$(docker_run) /bin/sh -c $(test_cmd) && open diff.png
+	$(docker_run) /bin/sh -c $(test_cmd)
 
 .PHONY: build build-dev test ci push check-code-style fix-code-style
