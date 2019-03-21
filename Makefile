@@ -1,5 +1,5 @@
 image_name=e-ink-dash
-test_cmd="python dash_tests.py && python integration_tests.py && node generate_diff.js"
+test_cmd="python dash_tests.py && python integration_tests.py && pixelmatch expected.png actual.png diff.png"
 docker_run=docker run -it --rm -v $(shell pwd):/home/app -w /home/app $(image_name)-dev
 
 # Can be overridden
